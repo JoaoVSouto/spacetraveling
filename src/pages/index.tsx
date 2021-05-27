@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
+import { FiCalendar, FiUser } from 'react-icons/fi';
 
 import { getPrismicClient } from '../services/prismic';
 
@@ -32,7 +33,45 @@ export default function Home(): JSX.Element {
         <title>Home | spacetraveling.</title>
       </Head>
 
-      <h1>hello world!</h1>
+      <main className={styles.container}>
+        <article>
+          <a href="#!">
+            <h3>Como utilizar Hooks</h3>
+            <p>Pensando em sincronização em vez de ciclos de vida.</p>
+            <div>
+              <time>
+                <FiCalendar size={20} />
+                15 Mar 2021
+              </time>
+              <small>
+                <FiUser size={20} />
+                João Vítor
+              </small>
+            </div>
+          </a>
+        </article>
+        <article>
+          <a href="#!">
+            <h3>Criando um app CRA do zero</h3>
+            <p>
+              Tudo sobre como criar a sua primeira aplicação utilizando Create
+              React App
+            </p>
+            <div>
+              <time>
+                <FiCalendar size={20} />
+                15 Mar 2021
+              </time>
+              <small>
+                <FiUser size={20} />
+                João Vítor
+              </small>
+            </div>
+          </a>
+        </article>
+
+        <button type="button">Carregar mais posts</button>
+      </main>
     </>
   );
 }

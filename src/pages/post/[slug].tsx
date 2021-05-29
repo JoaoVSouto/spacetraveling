@@ -9,6 +9,8 @@ import ptBR from 'date-fns/locale/pt-BR';
 
 import { getPrismicClient } from '../../services/prismic';
 
+import TeaLoading from '../../components/TeaLoading';
+
 import styles from './post.module.scss';
 
 interface Post {
@@ -45,7 +47,12 @@ export default function Post({ post }: PostProps): JSX.Element {
           <title>Carregando... | spacetraveling.</title>
         </Head>
 
-        <h1>Carregando...</h1>
+        <main className={styles.container}>
+          <div className={styles.loadingContainer}>
+            <TeaLoading />
+            <h3>Carregando...</h3>
+          </div>
+        </main>
       </>
     );
   }

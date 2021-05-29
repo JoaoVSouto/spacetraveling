@@ -11,6 +11,8 @@ import { withQuery } from 'ufo';
 
 import { getPrismicClient } from '../services/prismic';
 
+import PostShimmer from '../components/PostShimmer';
+
 import styles from './home.module.scss';
 
 interface Post {
@@ -51,19 +53,26 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
   const [nextPage, setNextPage] = useState<string | null>(
     postsPagination.next_page
   );
+  const [isFetchingPosts, setIsFetchingPosts] = useState(false);
 
   async function handlePagination(): Promise<void> {
     if (!nextPage) {
       return;
     }
 
-    const response = await fetch(withQuery(nextPage, { lang: '*' }));
-    const newPosts = await response.json();
+    try {
+      setIsFetchingPosts(true);
 
-    const parsedPosts = newPosts.results.map(parsePost);
+      const response = await fetch(withQuery(nextPage, { lang: '*' }));
+      const newPosts = await response.json();
 
-    setPosts(state => state.concat(parsedPosts));
-    setNextPage(newPosts.next_page);
+      const parsedPosts = newPosts.results.map(parsePost);
+
+      setPosts(state => state.concat(parsedPosts));
+      setNextPage(newPosts.next_page);
+    } finally {
+      setIsFetchingPosts(false);
+    }
   }
 
   return (
@@ -94,7 +103,9 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
           </article>
         ))}
 
-        {nextPage && (
+        {isFetchingPosts && <PostShimmer quantity={3} />}
+
+        {nextPage && !isFetchingPosts && (
           <button type="button" onClick={handlePagination}>
             Carregar mais posts
           </button>

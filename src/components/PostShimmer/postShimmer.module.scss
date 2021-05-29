@@ -1,0 +1,50 @@
+.container {
+  margin-top: 3rem;
+}
+
+.title {
+  height: 2.125rem;
+  width: 10rem;
+}
+
+.subtitle {
+  height: 2.625rem;
+  margin-top: 1rem;
+}
+
+.infoContainer {
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.date,
+.author {
+  display: flex;
+  align-items: center;
+
+  div {
+    width: 5rem;
+    height: 1rem;
+    margin-left: 0.5rem;
+  }
+}
+
+.date {
+  margin-right: 1.5rem;
+}
+
+.shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(to right, #2c313b 4%, #454b58 25%, #2c313b 36%);
+  background-size: 1000px 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}

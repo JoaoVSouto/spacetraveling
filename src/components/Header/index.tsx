@@ -1,15 +1,16 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
 import styles from './header.module.scss';
 
 export default function Header(): JSX.Element {
-  const { route } = useRouter();
+  // TODO: remove comments after submission
+  // const router = useRouter();
 
-  const isOnHome = route === '/';
+  // const isOnHome = router.route === '/';
 
   return (
-    <header className={`${styles.container} ${isOnHome ? styles.home : ''}`}>
+    <header className={`${styles.container} ${false ? styles.home : ''}`}>
       <Link href="/">
         <a>
           <img src="/assets/logo.svg" alt="logo" />

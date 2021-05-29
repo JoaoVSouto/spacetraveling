@@ -11,6 +11,7 @@ import { getPrismicClient } from '../services/prismic';
 
 import Post from '../components/Post';
 import PostShimmer from '../components/PostShimmer';
+import PaginationButton from '../components/PaginationButton';
 
 import styles from './home.module.scss';
 
@@ -88,9 +89,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
         {isFetchingPosts && <PostShimmer quantity={3} />}
 
         {nextPage && !isFetchingPosts && (
-          <button type="button" onClick={handlePagination}>
-            Carregar mais posts
-          </button>
+          <PaginationButton onClick={handlePagination} />
         )}
       </main>
     </>

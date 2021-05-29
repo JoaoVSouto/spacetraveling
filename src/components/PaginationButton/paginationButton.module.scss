@@ -1,0 +1,14 @@
+.container {
+  border: 0;
+  background-color: transparent;
+  color: var(--pink-500);
+  font-size: 1.125rem;
+  font-weight: 600;
+
+  transition: filter 200ms;
+
+  &:hover,
+  &:focus {
+    filter: brightness(0.8);
+  }
+}

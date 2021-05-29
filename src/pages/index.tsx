@@ -2,8 +2,6 @@
 import { useState } from 'react';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
-import { FiCalendar, FiUser } from 'react-icons/fi';
 import Prismic from '@prismicio/client';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
@@ -11,6 +9,7 @@ import { withQuery } from 'ufo';
 
 import { getPrismicClient } from '../services/prismic';
 
+import Post from '../components/Post';
 import PostShimmer from '../components/PostShimmer';
 
 import styles from './home.module.scss';
@@ -83,24 +82,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
 
       <main className={styles.container}>
         {posts.map(post => (
-          <article key={post.uid}>
-            <Link href={`/post/${post.uid}`}>
-              <a>
-                <h3>{post.data.title}</h3>
-                <p>{post.data.subtitle}</p>
-                <div>
-                  <time>
-                    <FiCalendar size={20} />
-                    {post.first_publication_date}
-                  </time>
-                  <small>
-                    <FiUser size={20} />
-                    {post.data.author}
-                  </small>
-                </div>
-              </a>
-            </Link>
-          </article>
+          <Post key={post.uid} post={post} />
         ))}
 
         {isFetchingPosts && <PostShimmer quantity={3} />}

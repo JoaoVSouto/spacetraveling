@@ -1,0 +1,60 @@
+.container {
+  * {
+    outline: none;
+  }
+
+  + .container {
+    margin-top: 3rem;
+  }
+
+  a {
+    display: block;
+
+    &:hover,
+    &:focus {
+      h3 {
+        color: var(--pink-500);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid hsla(0, 0%, 100%, 0.08);
+      outline-offset: 5px;
+    }
+  }
+
+  h3 {
+    color: var(--gray-100);
+    font-size: 1.75rem;
+
+    transition: color 200ms;
+  }
+
+  p {
+    margin-top: 0.5rem;
+    color: var(--gray-300);
+    font-size: 1.125rem;
+  }
+
+  div {
+    margin-top: 1.5rem;
+
+    display: flex;
+    align-items: center;
+
+    time {
+      margin-right: 1.5rem;
+    }
+
+    time,
+    small {
+      display: flex;
+      align-items: center;
+      font-size: 0.875rem;
+
+      svg {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}

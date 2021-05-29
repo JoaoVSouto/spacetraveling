@@ -1,7 +1,5 @@
 import Link from 'next/link';
 import { FiCalendar, FiUser } from 'react-icons/fi';
-import { format } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
 
 import styles from './post.module.scss';
 
@@ -29,9 +27,7 @@ export default function Post({ post }: PostProps): JSX.Element {
           <div>
             <time>
               <FiCalendar size={20} />
-              {format(new Date(post.first_publication_date), 'dd MMM yyyy', {
-                locale: ptBR,
-              })}
+              {post.first_publication_date}
             </time>
             <small>
               <FiUser size={20} />

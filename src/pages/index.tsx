@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Prismic from '@prismicio/client';
+import { format } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
 import { withQuery } from 'ufo';
 
 import { getPrismicClient } from '../services/prismic';
@@ -34,7 +36,11 @@ interface HomeProps {
 
 const parsePost = (post: Post): Post => ({
   uid: post.uid,
-  first_publication_date: post.first_publication_date,
+  first_publication_date: format(
+    new Date(post.first_publication_date),
+    'dd MMM yyyy',
+    { locale: ptBR }
+  ),
   data: {
     title: post.data.title,
     subtitle: post.data.subtitle,

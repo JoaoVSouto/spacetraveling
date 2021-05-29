@@ -83,9 +83,7 @@ export default function Post({ post }: PostProps): JSX.Element {
         <div className={styles.postInfo}>
           <time>
             <FiCalendar size={20} />
-            {format(new Date(post.first_publication_date), 'dd MMM yyyy', {
-              locale: ptBR,
-            })}
+            {post.first_publication_date}
           </time>
           <span>
             <FiUser size={20} />
@@ -147,9 +145,27 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     lang: 'pt-br',
   });
 
+  const post = {
+    first_publication_date: format(
+      new Date(response.first_publication_date),
+      'dd MMM yyyy',
+      { locale: ptBR }
+    ),
+    data: {
+      title: response.data.title,
+      banner: {
+        url: response.data.banner.url,
+        alt: response.data.banner.alt,
+      },
+      author: response.data.author,
+      content: response.data.content,
+    },
+  };
+
   return {
     props: {
-      post: response,
+      post,
     },
+    revalidate: 60 * 60 * 24, // 24 hours
   };
 };

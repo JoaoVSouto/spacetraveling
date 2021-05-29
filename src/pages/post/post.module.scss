@@ -51,3 +51,41 @@
     margin-top: 3rem;
   }
 }
+
+.contentBlock {
+  h3 {
+    font-size: 2.25rem;
+    color: var(--gray-100);
+  }
+
+  + .contentBlock {
+    margin-top: 2.25rem;
+  }
+}
+
+.dynamicContent {
+  font-size: 1.125rem;
+  line-height: 1.5625rem;
+  margin-top: 2.25rem;
+  text-align: justify;
+  color: var(--gray-300);
+
+  * + * {
+    margin-top: 1.125rem;
+  }
+
+  ul {
+    padding-left: 1.125rem;
+  }
+
+  a {
+    color: var(--pink-500);
+
+    transition: filter 200ms;
+
+    &:hover,
+    &:focus {
+      filter: brightness(0.85);
+    }
+  }
+}

@@ -36,6 +36,7 @@
     "react/jsx-props-no-spreading": "off",
     "prettier/prettier": "error",
     "react/react-in-jsx-scope": "off",
+    "react/no-danger": "off",
     "react/prop-types": "off",
     "jsx-a11y/anchor-is-valid": [
       "error",
@@ -72,6 +73,12 @@
       {
         "ts": "never",
         "tsx": "never"
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
       }
     ],
     "@typescript-eslint/explicit-function-return-type": [

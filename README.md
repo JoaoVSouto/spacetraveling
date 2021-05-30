@@ -8,7 +8,7 @@ This simple blog was created as for studying and applying concepts of the Jamsta
 
 - [x] Completely responsive
 - [x] Allow users to comment on posts
-- [ ] Navigation between previous and next posts
+- [x] Navigation between previous and next posts
 - [ ] Editing information on the post
 
 ## :zap: Techs

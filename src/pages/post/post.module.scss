@@ -50,8 +50,14 @@
   }
 }
 
+.editInfo {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  font-style: italic;
+}
+
 .content {
-  margin-top: 4rem;
+  margin-top: 3.75rem;
 
   @media only screen and (max-width: 720px) {
     margin-top: 3rem;
@@ -78,6 +84,10 @@
 
   * + * {
     margin-top: 1.125rem;
+  }
+
+  p:empty:not(:last-child) {
+    margin-bottom: 2.25rem;
   }
 
   ul {

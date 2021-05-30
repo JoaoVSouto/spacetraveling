@@ -17,6 +17,7 @@ import styles from './post.module.scss';
 
 interface Post {
   first_publication_date: string | null;
+  latestEditionDate: string | null;
   data: {
     title: string;
     banner: {
@@ -114,6 +115,11 @@ export default function Post({
             {readingTime} min
           </span>
         </div>
+        {post.latestEditionDate && (
+          <p className={styles.editInfo}>
+            * editado em {post.latestEditionDate}
+          </p>
+        )}
 
         <div className={styles.content}>
           {post.data.content.map(content => (
@@ -229,6 +235,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       'dd MMM yyyy',
       { locale: ptBR }
     ),
+    latestEditionDate:
+      response.first_publication_date !== response.last_publication_date
+        ? format(
+            new Date(response.last_publication_date),
+            "dd MMM yyyy', às' HH:mm",
+            { locale: ptBR }
+          )
+        : null,
     data: {
       title: response.data.title,
       banner: {

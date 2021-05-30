@@ -44,3 +44,11 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+#utterances-container {
+  margin-top: 4rem;
+
+  .utterances {
+    max-width: 100%;
+  }
+}

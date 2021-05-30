@@ -10,6 +10,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 import { getPrismicClient } from '../../services/prismic';
 
 import TeaLoading from '../../components/TeaLoading';
+import PostComments from '../../components/PostComments';
 
 import styles from './post.module.scss';
 
@@ -116,6 +117,8 @@ export default function Post({ post }: PostProps): JSX.Element {
             </div>
           ))}
         </div>
+
+        <PostComments />
       </main>
     </>
   );

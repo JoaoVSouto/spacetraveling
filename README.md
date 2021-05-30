@@ -7,7 +7,7 @@ This simple blog was created as for studying and applying concepts of the Jamsta
 ## :fire: Extra features
 
 - [x] Completely responsive
-- [ ] Allow users to comment on posts
+- [x] Allow users to comment on posts
 - [ ] Navigation between previous and next posts
 - [ ] Editing information on the post
 
@@ -20,6 +20,7 @@ The following technologies were used to build this project:
 - [Next.js](https://nextjs.org/)
 - [Sass](https://sass-lang.com/)
 - [Prismic CMS](https://prismic.io/)
+- [utterances](https://utteranc.es/)
 
 ## :bulb: Usage
 

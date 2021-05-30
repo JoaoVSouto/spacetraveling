@@ -28,6 +28,9 @@
 
     .postNavigation + .postNavigation {
       align-self: flex-end;
+    }
+
+    .postNavigation:not(:empty) + .postNavigation {
       margin-top: 1.5rem;
     }
   }

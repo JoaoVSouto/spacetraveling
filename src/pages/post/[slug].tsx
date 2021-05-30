@@ -10,6 +10,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 import { getPrismicClient } from '../../services/prismic';
 
 import TeaLoading from '../../components/TeaLoading';
+import PostsNavigation from '../../components/PostsNavigation';
 import PostComments from '../../components/PostComments';
 
 import styles from './post.module.scss';
@@ -32,13 +33,24 @@ interface Post {
   };
 }
 
+interface AdjacentPost {
+  slug: string;
+  title: string;
+}
+
 interface PostProps {
   post: Post;
+  nextPost: AdjacentPost | null;
+  previousPost: AdjacentPost | null;
 }
 
 const AVERAGE_READING_WORDS_PER_MINUTE = 200;
 
-export default function Post({ post }: PostProps): JSX.Element {
+export default function Post({
+  post,
+  nextPost,
+  previousPost,
+}: PostProps): JSX.Element {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -118,6 +130,14 @@ export default function Post({ post }: PostProps): JSX.Element {
           ))}
         </div>
 
+        <hr />
+
+        <PostsNavigation
+          className={styles.postsNavigationContainer}
+          nextPost={nextPost}
+          previousPost={previousPost}
+        />
+
         <PostComments />
       </main>
     </>
@@ -155,6 +175,54 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     lang: 'pt-br',
   });
 
+  const [nextPostResponse, previousPostResponse] = await Promise.all([
+    prismic.query(
+      [
+        Prismic.predicates.at('document.type', 'posts'),
+        Prismic.predicates.dateAfter(
+          'document.first_publication_date',
+          response.first_publication_date
+        ),
+      ],
+      {
+        fetch: ['posts.title'],
+        orderings: '[document.first_publication_date]',
+        pageSize: 1,
+        lang: '*',
+      }
+    ),
+    prismic.query(
+      [
+        Prismic.predicates.at('document.type', 'posts'),
+        Prismic.predicates.dateBefore(
+          'document.first_publication_date',
+          response.first_publication_date
+        ),
+      ],
+      {
+        fetch: ['posts.title'],
+        orderings: '[document.first_publication_date desc]',
+        pageSize: 1,
+        lang: '*',
+      }
+    ),
+  ]);
+
+  const nextPost =
+    nextPostResponse.results.length > 0
+      ? {
+          slug: nextPostResponse.results[0].uid,
+          title: nextPostResponse.results[0].data.title,
+        }
+      : null;
+  const previousPost =
+    previousPostResponse.results.length > 0
+      ? {
+          slug: previousPostResponse.results[0].uid,
+          title: previousPostResponse.results[0].data.title,
+        }
+      : null;
+
   const post = {
     first_publication_date: format(
       new Date(response.first_publication_date),
@@ -175,6 +243,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       post,
+      nextPost,
+      previousPost,
     },
     revalidate: 60 * 60 * 24, // 24 hours
   };

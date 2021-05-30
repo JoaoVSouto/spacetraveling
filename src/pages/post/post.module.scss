@@ -20,6 +20,12 @@
     font-size: 3rem;
     line-height: 3.625rem;
   }
+
+  hr {
+    opacity: 0.1;
+    border-color: var(--gray-300);
+    margin-top: 3.75rem;
+  }
 }
 
 .postInfo {
@@ -101,4 +107,8 @@
     font-size: 1.5rem;
     margin-top: 0.5rem;
   }
+}
+
+.postsNavigationContainer {
+  margin-top: 3rem;
 }

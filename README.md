@@ -40,7 +40,7 @@ $ yarn
 $ cp .env.example .env.local
 
 # Run the app on your localhost
-$ yarn start
+$ yarn dev
 ```
 
 > :bulb: You won't be able to run the app correctly unless you fill the .env with the proper values.
